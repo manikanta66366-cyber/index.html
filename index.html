@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Konupalli Manikanta — Aspiring Software Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0F1420;
+    --surface: #171E30;
+    --surface-2: #1E2740;
+    --text: #E9E7DE;
+    --muted: #8C93A6;
+    --amber: #F2A65A;
+    --teal: #4FB0A5;
+    --line: rgba(233,231,222,0.10);
+  }
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,h2,h3{ font-family:'Space Grotesk', sans-serif; margin:0; }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+  a{ color: var(--amber); text-decoration: none; }
+  a:hover{ text-decoration: underline; }
+  a:focus-visible, button:focus-visible{ outline: 2px solid var(--teal); outline-offset: 3px; }
+
+  .wrap{ max-width: 780px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    min-height: 92vh;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid{
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 42px 42px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 40%, transparent 90%);
+    opacity: 0.6;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    color: var(--teal);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    margin-bottom: 18px;
+    display:flex; align-items:center; gap: 10px;
+  }
+  .dot{ width:8px; height:8px; border-radius:50%; background: var(--teal); box-shadow: 0 0 12px var(--teal); }
+  .hero h1{
+    font-size: clamp(2.4rem, 7vw, 4.2rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+  .hero .role{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: clamp(1rem, 2.4vw, 1.25rem);
+    color: var(--muted);
+    margin-top: 18px;
+    max-width: 46ch;
+  }
+  .cursor{
+    display:inline-block; width: 0.55ch; background: var(--amber);
+    animation: blink 1s step-end infinite; margin-left: 2px;
+  }
+  @keyframes blink{ 50%{ opacity:0; } }
+  .hero-links{ margin-top: 34px; display:flex; gap:22px; flex-wrap:wrap; font-family:'IBM Plex Mono', monospace; font-size:0.9rem; }
+
+  section{ padding: 80px 0; border-top: 1px solid var(--line); }
+  .kicker{
+    font-family:'IBM Plex Mono', monospace;
+    color: var(--muted);
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .kicker::before{ content: "// "; color: var(--teal); }
+  h2{ font-size: clamp(1.6rem, 4vw, 2.1rem); margin-bottom: 22px; }
+  p{ color: var(--text); }
+  .lede{ color: var(--muted); max-width: 62ch; font-size: 1.05rem; }
+
+  /* ---------- Stack / pipeline ---------- */
+  .stack{ margin-top: 40px; display:flex; flex-direction:column; gap:14px; }
+  .stack-row{
+    display:flex; align-items:center; gap:20px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 18px 22px;
+    position: relative;
+  }
+  .stack-row .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--bg);
+    background: var(--amber);
+    padding: 3px 9px;
+    border-radius: 5px;
+    white-space: nowrap;
+    font-weight: 600;
+  }
+  .stack-row:nth-child(2) .tag{ background: var(--teal); }
+  .stack-row:nth-child(3) .tag{ background: #C6A5E0; }
+  .stack-row .label{ font-weight:600; font-size:1.05rem; }
+  .stack-row .items{ color: var(--muted); font-size: 0.95rem; margin-top: 3px; }
+  .stack-connector{
+    width:1px; height:14px; background: var(--line); margin-left: 52px;
+  }
+
+  /* ---------- Log ---------- */
+  .log{
+    margin-top: 36px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--surface);
+    overflow:hidden;
+  }
+  .log-head{
+    display:flex; align-items:center; gap:8px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--line);
+    background: var(--surface-2);
+  }
+  .log-head span{ width:9px; height:9px; border-radius:50%; background: var(--muted); opacity:0.5; }
+  .log-title{ margin-left:8px; font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color: var(--muted); }
+  .log-body{ padding: 6px 0; }
+  .log-entry{
+    display:flex; gap:16px;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.95rem;
+  }
+  .log-entry:last-child{ border-bottom:none; }
+  .log-entry .status{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--teal);
+    white-space: nowrap;
+    padding-top: 2px;
+  }
+  .log-entry.pending .status{ color: var(--amber); }
+  .log-entry .desc strong{ color: var(--text); }
+  .log-entry .desc{ color: var(--muted); }
+
+  /* ---------- Education ---------- */
+  .edu{
+    margin-top: 36px;
+    display:flex; justify-content:space-between; gap: 20px; flex-wrap: wrap;
+    padding: 22px 0;
+    border-top: 1px solid var(--line);
+  }
+  .edu .school{ font-weight:600; font-size:1.1rem; }
+  .edu .degree{ color: var(--muted); margin-top:4px; }
+  .edu .year{ font-family:'IBM Plex Mono', monospace; color: var(--amber); font-size:0.9rem; white-space:nowrap; }
+
+  /* ---------- Contact ---------- */
+  .contact-grid{
+    margin-top: 30px;
+    display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 16px;
+  }
+  .contact-card{
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .contact-card .k{ font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color: var(--muted); text-transform:uppercase; letter-spacing:0.06em; }
+  .contact-card .v{ margin-top:8px; font-size:1.05rem; font-weight:500; }
+
+  footer{
+    padding: 40px 0 60px;
+    color: var(--muted);
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    text-align:center;
+  }
+
+  @media (max-width:600px){
+    .stack-row{ flex-direction:column; align-items:flex-start; gap:8px; }
+    .log-entry{ flex-direction:column; gap:4px; }
+    .edu{ flex-direction:column; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .cursor{ animation:none; }
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span>status: learning &amp; building</div>
+    <h1>Konupalli<br>Manikanta</h1>
+    <p class="role">Aspiring software developer &amp; data science enthusiast<span class="cursor"></span></p>
+    <div class="hero-links">
+      <a href="#stack">skills →</a>
+      <a href="#log">now building →</a>
+      <a href="#contact">contact →</a>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="kicker">about</div>
+    <h2>Starting from first principles</h2>
+    <p class="lede">
+      I'm a BCA student building a solid foundation in programming, with a growing pull toward
+      artificial intelligence and data science. I like understanding how things work underneath —
+      that's why I started with C before moving to Python — and I'm looking for opportunities to
+      turn that foundation into real, applied work.
+    </p>
+  </div>
+</section>
+
+<section id="stack">
+  <div class="wrap">
+    <div class="kicker">how it fits together</div>
+    <h2>Foundations → Languages → Focus</h2>
+    <div class="stack">
+      <div class="stack-row">
+        <span class="tag">01</span>
+        <div>
+          <div class="label">Foundations</div>
+          <div class="items">Core programming logic, problem-solving, data structures fundamentals</div>
+        </div>
+      </div>
+      <div class="stack-connector"></div>
+      <div class="stack-row">
+        <span class="tag">02</span>
+        <div>
+          <div class="label">Languages</div>
+          <div class="items">C · Python</div>
+        </div>
+      </div>
+      <div class="stack-connector"></div>
+      <div class="stack-row">
+        <span class="tag">03</span>
+        <div>
+          <div class="label">Focus areas</div>
+          <div class="items">Artificial Intelligence · Data Science</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="log">
+  <div class="wrap">
+    <div class="kicker">build log</div>
+    <h2>What I'm working on right now</h2>
+    <p class="lede">No shipped projects yet — and I'd rather say that plainly than pad this section. Here's what's actually in progress.</p>
+    <div class="log">
+      <div class="log-head">
+        <span></span><span></span><span></span>
+        <div class="log-title">learning-log.md</div>
+      </div>
+      <div class="log-body">
+        <div class="log-entry pending">
+          <div class="status">in progress</div>
+          <div class="desc"><strong>Python fundamentals</strong> — syntax, data structures, and writing small practice scripts.</div>
+        </div>
+        <div class="log-entry pending">
+          <div class="status">in progress</div>
+          <div class="desc"><strong>C programming</strong> — strengthening core logic and memory-level thinking.</div>
+        </div>
+        <div class="log-entry pending">
+          <div class="status">exploring</div>
+          <div class="desc"><strong>AI &amp; data science concepts</strong> — reading and self-study, working toward a first hands-on project.</div>
+        </div>
+        <div class="log-entry">
+          <div class="status">next up</div>
+          <div class="desc"><strong>First project</strong> — details to be added soon. Check back here.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="kicker">education</div>
+    <h2>Currently studying</h2>
+    <div class="edu">
+      <div>
+        <div class="school">Sreepaada Degree College</div>
+        <div class="degree">Bachelor of Computer Applications (BCA)</div>
+      </div>
+      <div class="year">expected 2028</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="kicker">get in touch</div>
+    <h2>Looking for internships &amp; entry-level roles</h2>
+    <p class="lede">
+      Open to opportunities in software development or data science where I can apply what I'm learning
+      and keep growing as a developer.
+    </p>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="k">Email</div>
+        <div class="v"><a href="mailto:manikanta66366@gmail.com">manikanta66366@gmail.com</a></div>
+      </div>
+      <div class="contact-card">
+        <div class="k">Phone</div>
+        <div class="v"><a href="tel:+919603766366">+91 96037 66366</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  built by Konupalli Manikanta — last updated 2026
+</footer>
+
+</body>
+</html>
